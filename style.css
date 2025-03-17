@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+}
+
+body {
+    background-color: #303030;
+    color: #FFF;
+}
+
+.bg {
+    z-index: -1;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    color: #FFF;
+    transition: 0.2s;
+}
+
+a:hover {
+    color: #d446ff;
+}
+
+@keyframes rbow {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 400% 0%;
+    }
+  }
+
+.name {
+    font-size: 8em;
+    backdrop-filter: blur(12px);
+    border-radius: 50px;
+    white-space: nowrap;
+    padding: 20px;
+    width: fit-content;
+    background: linear-gradient(90deg, rgba(252,48,129,0.5) 0%, rgba(28,9,121,0.5) 33%, rgba(184,22,255,0.5) 66%, rgba(252,48,129,0.5) 100%);
+    background-size: 200% 100%;
+    animation: rbow 16s linear infinite;
+}
+
+.title {
+    font-size: 5em;
+    margin-top: 50px;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 95vh;
+}
+
+.topmid {
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    width: 50vw;
+}
+
+.projecttitl {
+    font-size: 2em;
+}
+
+.soutitr {
+    font-size: 2em;
+}
+
+.dot {
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    color: #710090;
+    background-color: #FFF;
+    border-radius: 50%;
+    height: 1.75em;
+    width: 1.75em;
+    transition: 0.5s;
+    margin: 3px;
+    border: 3px solid #FFF;
+}
+
+.dot:hover {
+    color: #000000;
+    border: 3px solid #710090;
+}
+
+i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5 em;
+}
+
+.abtme {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    padding: 1.5rem;
+    border: rgba(255, 0, 106, 0.4) solid 4px;
+    background: linear-gradient(135deg, rgba(252,48,129,0.25) 0%, rgba(28,9,121,0.25) 50%, rgba(184,22,255,0.25) 100%);
+    border-radius: 25px;
+    margin: 1.5rem 0;
+    gap: 1rem;
+}
+
+.abtme h1 {
+    font-size: 3em;
+}
+
+.socials {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+
+.abody {
+    background-color: #303030ce;
+    backdrop-filter: blur(16px);
+}
+
+.pbody {
+    background-color: #303030ce;
+    backdrop-filter: blur(16px);
+}
+
+.sections {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.project {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.projimg {
+    height: 300px;
+    border-radius: 25px;
+    aspect-ratio: 16/9;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.projdesctitl {
+    height: 300px;
+    border-radius: 25px;
+    aspect-ratio: 16/9;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.projectdesc {
+    font-size: 20px;
+}
+
+.navbar {
+    background-color: #00000080;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    backdrop-filter: blur(25px);
+    z-index: 100;
+    height: 6vh;
+}
+
+.navtitle {
+    font-size: 2em;
+    color: #FFF;
+    margin-left: 20px;
+}
+
+.navitem {
+    font-size: 1.5em;
+    color: #FFF;
+    margin-right: 20px;
+}
+
+/* Loader */
+.loadinganim {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    position: fixed;
+    z-index: 9999;
+    transition-duration: 1s;
+}
+
+.loader {
+    width: 10vh;
+    aspect-ratio: 1;
+    border: 1vh solid #000;
+    box-sizing: border-box;
+    background: 
+      radial-gradient(farthest-side,#fff 98%,#0000) top,
+      radial-gradient(farthest-side,#fff 98%,#0000) top,
+      radial-gradient(farthest-side,#fff 98%,#0000) left,
+      radial-gradient(farthest-side,#fff 98%,#0000) right,
+      radial-gradient(farthest-side,#fff 98%,#0000) bottom,
+      #000;
+    background-size: 2vh 2vh;
+    background-repeat: no-repeat;
+    filter: blur(4px) contrast(10); 
+    animation: l19 2s infinite;
+  }
+  @keyframes l19 {
+    0%   {background-position:top,top,left,right,bottom}
+    25%  {background-position:right,top,left,right,bottom}
+    50%  {background-position:bottom,top,left,right,bottom}
+    75%  {background-position:left,top,left,right,bottom}
+    100% {background-position:top,top,left,right,bottom}
+  }
+/* End of loader */
