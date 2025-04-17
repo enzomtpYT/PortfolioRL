@@ -2,16 +2,18 @@ projects = [
         {
             "title": "Hotel Neptune",
             "dates": "2023",
-            "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis aperiam dolor nesciunt harum, enim repudiandae laborum voluptatum.",
+            "description": "**Système de gestion hôtelière** avec une interface épurée.",
             "image": "assets/project/neptune.webp",
-            "source": "https://github.com/thaliumFr/HotelNeptune"
+            "links": {"source": "https://github.com/thaliumFr/HotelNeptune"},
+            "tags": ["HTML", "SCSS", "JavaScript", "PHP", "MySQL", "Twig"]
         },
         {
             "title": "Travelly",
             "dates": "2023",
-            "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis aperiam dolor nesciunt harum, enim repudiandae laborum voluptatum.",
+            "description": "**Application de planification de voyages** pour organiser des séjours efficacement.",
             "image": "assets/project/travelly.webp",
-            "source": "https://github.com/enzomtpYT/Travelly"
+            "links": {"source": "https://github.com/enzomtpYT/Travelly"},
+            "tags": ["HTML", "CSS", "JavaScript"]
         }
     ]
 
@@ -32,36 +34,62 @@ function disableLoading() {
 }
 
 projects.forEach((proj, index) => {
-    const divprojects = newElement('div', 'projects');
-    const divproject = newElement('div', 'project');
-    const aimg = newElement('a', '');
-    const img = newElement('img', 'projimg');
-    const divprojdesctitle = newElement('div', 'projdesctitl');
-    const aprojecttitl = newElement('a', 'projecttitl');
-    const pprojectdesc = newElement('p', 'projectdesc');
-
-    aprojecttitl.href = proj.source;
-    aprojecttitl.target = "_blank";
-    aprojecttitl.textContent = `${proj.title} (${proj.dates})`;
-    pprojectdesc.textContent = proj.description;
-    divprojdesctitle.appendChild(aprojecttitl);
-    divprojdesctitle.appendChild(pprojectdesc);
-
-    aimg.href = proj.source;
-    aimg.target = "_blank";
-    img.src = proj.image;
-    aimg.appendChild(img);
-
-    if (index % 2 !== 0) {
-        divproject.appendChild(divprojdesctitle);
-        divproject.appendChild(aimg);
-    } else {
-        divproject.appendChild(aimg);
-        divproject.appendChild(divprojdesctitle);
+    // Get the cardcontainer element
+    const cardContainer = document.querySelector('.cardcontainer');
+    
+    // Create card element
+    const card = newElement('div', 'card');
+    card.id = `card${index + 1}`;
+    
+    // Create card title
+    const cardTitle = newElement('h3', 'cardtitle');
+    cardTitle.textContent = proj.title;
+    
+    // Create card image
+    const cardImg = newElement('img', 'cardimg');
+    cardImg.src = proj.image;
+    cardImg.alt = `${proj.title} Image`;
+    
+    // Create card description
+    const cardDesc = newElement('p', 'carddesc');
+    cardDesc.innerHTML = marked.parse(proj.description);
+    
+    // Create card tags container
+    const cardTags = newElement('div', 'cardtags');
+    
+    // Add tags to container
+    proj.tags.forEach(tag => {
+        const tagElement = newElement('div', 'tag');
+        tagElement.textContent = tag;
+        cardTags.appendChild(tagElement);
+    });
+    
+    // Create card links container
+    const cardLinks = newElement('div', 'cardlinks');
+    
+    // Add GitHub link if available
+    if (proj.links && proj.links.source) {
+        const githubLink = document.createElement('a');
+        githubLink.href = proj.links.source;
+        githubLink.id = `card${index + 1}git`;
+        githubLink.className = 'cardlink';
+        
+        const githubIcon = document.createElement('i');
+        githubIcon.className = 'fa-brands fa-github';
+        
+        githubLink.appendChild(githubIcon);
+        cardLinks.appendChild(githubLink);
     }
-
-    divprojects.appendChild(divproject);
-    document.getElementById('projects').appendChild(divprojects);
+    
+    // Append all elements to the card
+    card.appendChild(cardTitle);
+    card.appendChild(cardImg);
+    card.appendChild(cardDesc);
+    card.appendChild(cardTags);
+    card.appendChild(cardLinks);
+    
+    // Append the card to the container
+    cardContainer.appendChild(card);
 });
 
 // Marked
