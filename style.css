@@ -126,13 +126,8 @@ a:hover {
 }
 
 .abody {
-    background-color: #303030ce;
-    backdrop-filter: blur(16px);
-}
-
-.pbody {
-    background-color: #303030ce;
-    backdrop-filter: blur(16px);
+    background-color: #160211ce;
+    backdrop-filter: blur(8px);
 }
 
 .sections {
@@ -496,6 +491,179 @@ a:hover {
 .education-desc {
     font-size: 1em;
     line-height: 1.5;
+}
+
+/* BTS Dual Layout Styles */
+.dual-bts-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.bts-section-titles {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 10px 0 30px;
+    text-align: center;
+}
+
+.bts-section-title {
+    font-size: 2em;
+    padding: 10px 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    width: 45%;
+}
+
+.bts-section-title.slam {
+    background: linear-gradient(135deg, rgba(252,48,129,0.5) 0%, rgba(28,9,121,0.5) 100%);
+}
+
+.bts-section-title.sisr {
+    background: linear-gradient(135deg, rgba(28,9,121,0.5) 0%, rgba(184,22,255,0.5) 100%);
+}
+
+.bts-container {
+    position: relative;
+    width: calc(50% - 30px);
+    margin: 0;
+    padding: 20px;
+}
+
+.bts-separator {
+    position: relative;
+    width: 10px;
+    background: linear-gradient(45deg, rgba(252,48,129,0.8) 0%, rgba(184,22,255,0.8) 100%);
+    margin: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(184,22,255,0.6);
+    align-self: stretch;
+}
+
+.bts-content {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(25px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.bts-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(252,48,129,0.3);
+}
+
+.bts-container.slam .bts-content:hover {
+    border: 2px solid rgba(252,48,129,0.3);
+}
+
+.bts-container.sisr .bts-content:hover {
+    border: 2px solid rgba(184,22,255,0.3);
+}
+
+.bts-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, rgba(252,48,129,1) 0%, rgba(184,22,255,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bts-content h2 {
+    font-size: 1.8em;
+    margin: 1rem 0 0.5rem 0;
+    color: #fff;
+}
+
+.bts-content h3 {
+    font-size: 1.4em;
+    margin: 1rem 0 0.5rem 0;
+    background: linear-gradient(90deg, rgba(252,48,129,0.8) 0%, rgba(184,22,255,0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bts-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.bts-content ul {
+    padding-left: 1.5em;
+    margin: 0.5rem 0;
+}
+
+.bts-content li {
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 0.3rem;
+}
+
+.bts-content strong {
+    background: linear-gradient(90deg, rgba(252,48,129,0.9) 0%, rgba(184,22,255,0.9) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+}
+
+.bts-content em {
+    color: #d0d0d0;
+    font-style: italic;
+}
+
+/* Responsive design for BTS section */
+@media screen and (max-width: 992px) {
+    .dual-bts-container {
+        flex-direction: column;
+    }
+    
+    .bts-section-titles {
+        flex-direction: column;
+    }
+    
+    .bts-section-title {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .bts-container {
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+    
+    .bts-separator {
+        width: 100%;
+        height: 4px;
+        margin: 30px 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .bts-section-title {
+        font-size: 1.5em;
+    }
+    
+    .bts-content {
+        padding: 1.5rem;
+    }
+    
+    .bts-content h1 {
+        font-size: 2em;
+    }
+    
+    .bts-content h2 {
+        font-size: 1.5em;
+    }
 }
 
 /* Responsive timeline for mobile devices */

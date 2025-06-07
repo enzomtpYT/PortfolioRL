@@ -123,14 +123,112 @@ desc = `
 
 ## Je m'appelle **Enzo Joré**.
 
-J'ai 20 ans et je suis actuellement étudiant, je fais un **BTS SIO** (Services Informatiques aux Organisations) à l'EPSI de montpellier et j'en suis a ma **deuxieme année**, j'ai pris l'option **SLAM** (Solutions Logicielles et Applications Métier) qui s'apparente à l'option des developpeur informatique.
+J'ai 20 ans et je suis actuellement étudiant, je fais un **BTS SIO** (Services Informatiques aux Organisations) à l'EPSI de montpellier et j'en suis a ma **deuxieme année**, j'ai pris l'option **SLAM** (Solutions Logicielles et Applications Métier) qui s'apparente à l'option des développeurs informatique.
 
-J'ai fait ce choix car depuis que je suis petit j'ai toujours eu une certaine aisance avec l'infomartique et la programmation, je suis très curieux et toujours pret à apprendre de nouvelles choses et technologies, ce qui m'a permis d'avancer plutot rapidement dans l'apprentissage de la programmation.
+J'ai fait ce choix car depuis que je suis petit j'ai toujours eu une certaine aisance avec l'informatique et la programmation, je suis très curieux et toujours pret à apprendre de nouvelles choses et technologies, ce qui m'a permis d'avancer plutot rapidement dans l'apprentissage de la programmation.
 
 Après mon BTS SIO mon but serait de continuer ma formation à l'EPSI encore 3 ans pour au final avoir un master en Informatique
 `
 
 document.getElementById('abtme').innerHTML = marked.parse(desc);
+
+// BTS SIO explanations
+const btsExplanations = {
+    slam: `
+# BTS SIO - Option SLAM
+
+## **Solutions Logicielles et Applications Métier**
+
+Le **BTS SIO option SLAM** est une formation de 2 ans qui forme des **développeurs informatiques** spécialisés dans la création d'applications.
+
+### **Compétences développées :**
+- **Développement d'applications** (web, mobile, desktop)
+- **Programmation** dans différents langages (Python, PHP, JavaScript, Java, C#...)
+- **Conception de bases de données** (MySQL, PostgreSQL, MongoDB...)
+- **Frameworks et technologies modernes** (React, Node.js, Laravel, Django...)
+- **Gestion de projet** et méthodes agiles
+- **Tests et débogage** d'applications
+
+### **Débouchés professionnels :**
+- Développeur d'applications
+- Développeur web/mobile
+- Analyste programmeur
+- Concepteur d'applications
+- Chef de projet junior
+
+*Cette option correspond parfaitement à mon profil car j'ai toujours eu une passion pour la programmation et la création d'applications.*
+`,
+    sisr: `
+# BTS SIO - Option SISR
+
+## **Solutions d'Infrastructure, Systèmes et Réseaux**
+
+Le **BTS SIO option SISR** est une formation de 2 ans qui forme des **administrateurs systèmes et réseaux**.
+
+### **Compétences développées :**
+- **Administration de systèmes** (Windows Server, Linux, virtualisation)
+- **Gestion de réseaux** (configuration, sécurité, surveillance)
+- **Cybersécurité** et protection des données
+- **Support technique** et maintenance informatique
+- **Cloud computing** et services en ligne
+- **Supervision d'infrastructure** informatique
+
+### **Débouchés professionnels :**
+- Administrateur systèmes et réseaux
+- Technicien support informatique
+- Gestionnaire de parc informatique
+- Responsable sécurité informatique
+- Technicien cloud et virtualisation
+
+*Cette option est idéale pour ceux qui préfèrent l'aspect infrastructure et sécurité informatique plutôt que le développement.*
+`
+};
+
+// Generate dual BTS layout
+function generateBTSLayout() {
+    const btsContainer = document.getElementById('btsedxplain');
+    
+    // Create the dual-bts container
+    const dualBTSContainer = newElement('div', 'dual-bts-container');
+    
+    // Create section titles
+    const btsSectionTitles = newElement('div', 'bts-section-titles');
+    
+    const slamTitle = newElement('h3', 'bts-section-title slam');
+    slamTitle.textContent = 'BTS SIO - SLAM';
+    
+    const sisrTitle = newElement('h3', 'bts-section-title sisr');
+    sisrTitle.textContent = 'BTS SIO - SISR';
+    
+    btsSectionTitles.appendChild(slamTitle);
+    btsSectionTitles.appendChild(sisrTitle);
+    
+    // Add separator
+    const btsSeparator = newElement('div', 'bts-separator');
+    
+    // Create containers for each section
+    const slamContainer = newElement('div', 'bts-container slam');
+    const sisrContainer = newElement('div', 'bts-container sisr');
+    
+    // Create SLAM content
+    const slamContent = newElement('div', 'bts-content');
+    slamContent.innerHTML = marked.parse(btsExplanations.slam);
+    slamContainer.appendChild(slamContent);
+    
+    // Create SISR content
+    const sisrContent = newElement('div', 'bts-content');
+    sisrContent.innerHTML = marked.parse(btsExplanations.sisr);
+    sisrContainer.appendChild(sisrContent);
+    
+    // Append everything to the dual container
+    dualBTSContainer.appendChild(btsSectionTitles);
+    dualBTSContainer.appendChild(slamContainer);
+    dualBTSContainer.appendChild(btsSeparator);
+    dualBTSContainer.appendChild(sisrContainer);
+    
+    // Append dual container to the BTS section
+    btsContainer.appendChild(dualBTSContainer);
+}
 
 // Education data
 const educationData = [
@@ -295,9 +393,10 @@ function generateDualTimelines() {
     parcoursContainer.appendChild(dualContainer);
 }
 
-// Call the function to generate the dual timelines
+// Call the functions to generate the dual timelines and BTS layout
 document.addEventListener('DOMContentLoaded', function() {
     generateDualTimelines();
+    generateBTSLayout();
 });
 
 window.addEventListener("load", function(){ 
