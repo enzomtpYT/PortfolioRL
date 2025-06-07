@@ -1,7 +1,7 @@
 projects = [
         {
             "title": "Hotel Neptune",
-            "dates": "2023",
+            "dates": "2024",
             "description": "**Système de gestion hôtelière** avec une interface épurée.",
             "image": "assets/project/neptune.webp",
             "links": {"source": "https://github.com/thaliumFr/HotelNeptune"},
@@ -9,13 +9,37 @@ projects = [
         },
         {
             "title": "Travelly",
-            "dates": "2023",
+            "dates": "2024",
             "description": "**Application de planification de voyages** pour organiser des séjours efficacement.",
             "image": "assets/project/travelly.webp",
             "links": {"source": "https://github.com/enzomtpYT/Travelly"},
             "tags": ["HTML", "CSS", "JavaScript"]
+        },
+        {
+            "title": "Portfolio",
+            "dates": "2024-2025",
+            "description": "**Mon portfolio personnel** pour présenter mes projets et compétences.",
+            "image": "assets/project/portfolio.webp",
+            "links": {"source": "https://github.com/enzomtpYT/PortfolioRL"},
+            "tags": ["HTML", "CSS", "JavaScript"]
+        },
+        {
+            "title": "SportsApp",
+            "dates": "2025",
+            "description": "**Application de commande de materiel sportif** pour les clubs et associations.",
+            "image": "assets/project/sportsapp.webp",
+            "links": {"source": "https://github.com/thaliumFr/sportshop2"},
+            "tags": ["React", "Node.js", "Express", "MariaDB", "Bun"]
+        },
+        {
+            "title": "EPSI Waitlist",
+            "dates": "2025",
+            "description": "**Application de gestion de liste d'attente** pour l'EPSI Montpellier.",
+            "image": "assets/project/epsiwaitlist.webp",
+            "links": {"source": "https://github.com/enzomtpYT/EPSI-Waitlist"},
+            "tags": ["Python", "PostgreSQL", "Twig", "HTML", "CSS", "JavaScript"]
         }
-    ]
+];
 
 function newElement(tag, className) {
     const element = document.createElement(tag);
@@ -43,7 +67,7 @@ projects.forEach((proj, index) => {
     
     // Create card title
     const cardTitle = newElement('h3', 'cardtitle');
-    cardTitle.textContent = proj.title;
+    cardTitle.textContent = proj.title + ` (${proj.dates})`;
     
     // Create card image
     const cardImg = newElement('img', 'cardimg');
