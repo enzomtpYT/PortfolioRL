@@ -132,6 +132,174 @@ Après mon BTS SIO mon but serait de continuer ma formation à l'EPSI encore 3 a
 
 document.getElementById('abtme').innerHTML = marked.parse(desc);
 
+// Education data
+const educationData = [
+    {
+        "title": "Lycée Jean François Champollion",
+        "degree": "Baccalauréat Technologique STI2D option SIN",
+        "dates": "2020 - 2023",
+        "description": "Baccalauréat Technologique en Sciences et Technologies de l'Industrie et du Développement Durable, spécialité Systèmes d'Information et Numérique."
+    },
+    {
+        "title": "EPSI Montpellier",
+        "degree": "BTS SIO option SLAM",
+        "dates": "2023 - 2025",
+        "description": "Formation en Services Informatiques aux Organisations avec spécialisation en Solutions Logicielles et Applications Métier (SLAM) pour devenir développeur informatique."
+    },
+    {
+        "title": "EPSI Montpellier",
+        "degree": "Master en Ingénierie Informatique",
+        "dates": "2025 - 2028",
+        "description": "Formation d'ingénieurie en informatique avec spécialisation en développement logiciel."
+    }
+];
+
+// Professional data
+const professionalData = [
+    {
+        "title": "Entreprise Joré Jardin",
+        "position": "Développeur Web CMS",
+        "dates": "2024",
+        "description": "Stage de fin d'études BTS. Développement d'applications web avec CMS (WordPress et oodo) pour la création de sites vitrines et ventes en ligne. Utilisation des technologies HTML/CSS/JS"
+    },
+    {
+        "title": "Entreprise EPSI Montpellier",
+        "position": "Développeur Full Stack",
+        "dates": "2025",
+        "description": "Création de liste d'attente pour les étudiants de l'EPSI Montpellier. Développement d'une application web en Python avec PostgreSQL, Twig, HTML, CSS et JavaScript."
+    }
+];
+
+// Generate dual timelines for school and professional careers
+function generateDualTimelines() {
+    const parcoursContainer = document.getElementById('parcours');
+    
+    // Create the dual-timeline container
+    const dualContainer = newElement('div', 'dual-timeline-container');
+    
+    // Create section titles
+    const sectionTitles = newElement('div', 'section-titles');
+    
+    const educationTitle = newElement('h3', 'section-title education');
+    educationTitle.textContent = 'Parcours Scolaire';
+    
+    const professionalTitle = newElement('h3', 'section-title professional');
+    professionalTitle.textContent = 'Parcours Professionnel';
+    
+    sectionTitles.appendChild(educationTitle);
+    sectionTitles.appendChild(professionalTitle);
+    
+    // Add separator
+    const separator = newElement('div', 'timeline-separator');
+    
+    // Create containers for each timeline
+    const educationContainer = newElement('div', 'timeline-container education');
+    const professionalContainer = newElement('div', 'timeline-container professional');
+    
+    // Add education items
+    educationData.forEach((edu, index) => {
+        // Create education card
+        const educationCard = newElement('div', 'education-card');
+        
+        // Create card content
+        const cardHeader = newElement('div', 'education-header');
+        
+        const cardTitle = newElement('h3', 'education-title');
+        cardTitle.textContent = edu.title;
+        
+        const cardDegree = newElement('h4', 'education-degree');
+        cardDegree.textContent = edu.degree;
+        
+        const cardDate = newElement('div', 'education-date');
+        cardDate.textContent = edu.dates;
+        
+        const cardDesc = newElement('p', 'education-desc');
+        cardDesc.textContent = edu.description;
+        
+        // Append elements to card
+        cardHeader.appendChild(cardTitle);
+        cardHeader.appendChild(cardDegree);
+        
+        educationCard.appendChild(cardHeader);
+        educationCard.appendChild(cardDate);
+        educationCard.appendChild(cardDesc);
+        
+        // Create dot for timeline
+        const timelineDot = newElement('div', 'timeline-dot');
+        
+        // Create the item container (all on same side for single column)
+        const timelineItem = newElement('div', 'timeline-item');
+        
+        timelineItem.appendChild(educationCard);
+        timelineItem.appendChild(timelineDot);
+        
+        // Append to education timeline container
+        educationContainer.appendChild(timelineItem);
+    });
+    
+    // Add professional items
+    professionalData.forEach((prof, index) => {
+        // Create professional card
+        const professionalCard = newElement('div', 'education-card professional-card');
+        
+        // Create card content
+        const cardHeader = newElement('div', 'education-header');
+        
+        const cardTitle = newElement('h3', 'education-title');
+        cardTitle.textContent = prof.title;
+        
+        const cardPosition = newElement('h4', 'education-degree');
+        cardPosition.textContent = prof.position;
+        
+        const cardDate = newElement('div', 'education-date');
+        cardDate.textContent = prof.dates;
+        
+        const cardDesc = newElement('p', 'education-desc');
+        cardDesc.textContent = prof.description;
+        
+        // Append elements to card
+        cardHeader.appendChild(cardTitle);
+        cardHeader.appendChild(cardPosition);
+        
+        professionalCard.appendChild(cardHeader);
+        professionalCard.appendChild(cardDate);
+        professionalCard.appendChild(cardDesc);
+        
+        // Create dot for timeline
+        const timelineDot = newElement('div', 'timeline-dot professional-dot');
+        
+        // Create the item container (all on same side for single column)
+        const timelineItem = newElement('div', 'timeline-item');
+        
+        timelineItem.appendChild(professionalCard);
+        timelineItem.appendChild(timelineDot);
+        
+        // Append to professional timeline container
+        professionalContainer.appendChild(timelineItem);
+    });
+    
+    // Create center lines for timelines
+    const educationLine = newElement('div', 'timeline-line');
+    educationContainer.appendChild(educationLine);
+    
+    const professionalLine = newElement('div', 'timeline-line');
+    professionalContainer.appendChild(professionalLine);
+    
+    // Append everything to the dual container
+    dualContainer.appendChild(sectionTitles);
+    dualContainer.appendChild(educationContainer);
+    dualContainer.appendChild(separator);
+    dualContainer.appendChild(professionalContainer);
+    
+    // Append dual container to the parcours section
+    parcoursContainer.appendChild(dualContainer);
+}
+
+// Call the function to generate the dual timelines
+document.addEventListener('DOMContentLoaded', function() {
+    generateDualTimelines();
+});
+
 window.addEventListener("load", function(){ 
     isPageLoaded = true;
     disableLoading();
