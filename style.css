@@ -177,28 +177,209 @@ a:hover {
 }
 
 .navbar {
-    background-color: #00000080;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(25px);
+    border-bottom: 2px solid rgba(255, 0, 106, 0.2);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.navbar.scrolled {
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom-color: rgba(255, 0, 106, 0.4);
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    width: 100%;
-    backdrop-filter: blur(25px);
-    z-index: 100;
-    height: 6vh;
+    padding: 1rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.navtitle {
+.nav-logo {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logo-text {
     font-size: 2em;
-    color: #FFF;
-    margin-left: 20px;
+    font-weight: bold;
+    background: linear-gradient(90deg, rgba(252,48,129,1) 0%, rgba(184,22,255,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
 }
 
-.navitem {
-    font-size: 1.5em;
+.nav-logo:hover .logo-text {
+    background: linear-gradient(90deg, rgba(252,48,129,0.8) 0%, rgba(184,22,255,0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transform: scale(1.05);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     color: #FFF;
-    margin-right: 20px;
+    text-decoration: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(252,48,129,0.1) 0%, rgba(28,9,121,0.1) 50%, rgba(184,22,255,0.1) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.nav-link:hover::before {
+    left: 100%;
+}
+
+.nav-link:hover {
+    color: #d446ff;
+    background: linear-gradient(135deg, rgba(252,48,129,0.2) 0%, rgba(28,9,121,0.2) 50%, rgba(184,22,255,0.2) 100%);
+    border-color: rgba(255, 0, 106, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(252,48,129,0.3);
+}
+
+.nav-link i {
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover i {
+    transform: scale(1.2);
+    color: #ff48cc;
+}
+
+.nav-link.active {
+    background: linear-gradient(135deg, rgba(252,48,129,0.3) 0%, rgba(28,9,121,0.3) 50%, rgba(184,22,255,0.3) 100%);
+    border-color: rgba(255, 0, 106, 0.6);
+    color: #ff48cc;
+    box-shadow: 0 3px 10px rgba(252,48,129,0.4);
+}
+
+.nav-link.active i {
+    color: #ff48cc;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(252,48,129,1) 0%, rgba(184,22,255,1) 100%);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 1rem;
+    }
+    
+    .logo-text {
+        font-size: 1.5em;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(25px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem 0;
+        transition: all 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+        border-top: 2px solid rgba(255, 0, 106, 0.3);
+    }
+    
+    .nav-menu.active {
+        top: 80px;
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .nav-link {
+        width: 80%;
+        max-width: 300px;
+        justify-content: center;
+        padding: 1rem 1.5rem;
+        font-size: 1.2em;
+    }
+    
+    .nav-toggle {
+        display: flex;
+    }
+    
+    .nav-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+    
+    .nav-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .nav-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(8px, -8px);
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0.75rem;
+    }
+    
+    .logo-text {
+        font-size: 1.3em;
+    }
+    
+    .nav-link {
+        font-size: 1.1em;
+    }
 }
 
 
@@ -712,5 +893,159 @@ a:hover {
     
     .timeline-dot {
         left: -32px;
+    }
+}
+
+/* PDF Viewer Styles */
+#pdf-viewer {
+    padding: 2rem;
+    width: 100%;
+    height: fit-content;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+#pdf-viewer iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 13px;
+}
+
+#pdf-viewer object {
+    width: 100%;
+    height: 100%;
+    border-radius: 13px;
+}
+
+#pdf-viewer embed {
+    width: 100%;
+    height: 100%;
+    border-radius: 13px;
+}
+
+/* PDF fallback message styling */
+#pdf-viewer p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+#pdf-viewer a {
+    color: #d446ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#pdf-viewer a:hover {
+    color: #ff48cc;
+    text-decoration: underline;
+}
+
+.pdfobject {
+    aspect-ratio: 0.93;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #160211ce;
+    backdrop-filter: blur(8px);
+    border-top: rgba(255, 0, 106, 0.3) solid 2px;
+    padding: 2rem 1.5rem 1rem;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-contact h3 {
+    font-size: 1.8em;
+    margin-bottom: 1rem;
+    text-align: center;
+    background: linear-gradient(90deg, rgba(252,48,129,1) 0%, rgba(184,22,255,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #FFF;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(252,48,129,0.15) 0%, rgba(28,9,121,0.15) 50%, rgba(184,22,255,0.15) 100%);
+    border: rgba(255, 0, 106, 0.2) solid 1px;
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+}
+
+.footer-link:hover {
+    color: #d446ff;
+    border-color: rgba(255, 0, 106, 0.5);
+    background: linear-gradient(135deg, rgba(252,48,129,0.25) 0%, rgba(28,9,121,0.25) 50%, rgba(184,22,255,0.25) 100%);
+    transform: translateY(-2px);
+}
+
+.footer-link i {
+    font-size: 1.2em;
+}
+
+.footer-copyright {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: rgba(255, 255, 255, 0.1) solid 1px;
+    width: 100%;
+}
+
+.footer-copyright p {
+    color: #CCC;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* Responsive footer */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .footer-link {
+        width: 100%;
+        justify-content: center;
+        max-width: 250px;
+    }
+    
+    .footer-contact h3 {
+        font-size: 1.5em;
     }
 }

@@ -397,9 +397,118 @@ function generateDualTimelines() {
 document.addEventListener('DOMContentLoaded', function() {
     generateDualTimelines();
     generateBTSLayout();
+    
+    // Initialize PDFObject for the skills chart PDF
+    const pdfUrl = "assets/pdfs/Joré Enzo - BTS SIO - 2025 - Annexe 8-1 - Epreuve E5 - Tableau de synthese.pdf";
+    const options = {
+        width: "75%",
+        page: "1",
+        pdfOpenParams: {
+            view: "FitH",
+            pagemode: "none",
+            toolbar: "1",
+            statusbar: "0",
+            messages: "0",
+            navpanes: "0"
+        },
+        fallbackLink: `<p style="padding: 20px; text-align: center; background: #f5f5f5; border: 1px solid #ddd; border-radius: 5px;">Ce navigateur ne prend pas en charge l'affichage des PDFs intégrés. <a href="${pdfUrl}" target="_blank" style="color: #007bff; text-decoration: none;">Cliquez ici pour ouvrir le PDF dans un nouvel onglet</a>.</p>`
+    };
+    
+    if (typeof PDFObject !== 'undefined') {
+        const success = PDFObject.embed(pdfUrl, "#pdf-viewer", options);
+        if (!success) {
+            console.log("PDFObject embed failed, trying alternative approach");
+            // If PDFObject fails, create an iframe as fallback
+            document.getElementById("pdf-viewer").innerHTML = `
+                <iframe src="${pdfUrl}" width="100%" height="600px" style="border: none;">
+                    <p>Ce navigateur ne prend pas en charge l'affichage des PDFs. <a href="${pdfUrl}" target="_blank">Cliquez ici pour télécharger le PDF</a>.</p>
+                </iframe>
+            `;
+        }
+    } else {
+        console.log("PDFObject not loaded, using iframe");
+        // Fallback to iframe if PDFObject is not available
+        document.getElementById("pdf-viewer").innerHTML = `
+            <iframe src="${pdfUrl}" width="100%" height="600px" style="border: none;">
+                <p>Ce navigateur ne prend pas en charge l'affichage des PDFs. <a href="${pdfUrl}" target="_blank">Cliquez ici pour télécharger le PDF</a>.</p>
+            </iframe>
+        `;
+    }
 });
 
 window.addEventListener("load", function(){ 
     isPageLoaded = true;
     disableLoading();
+});
+
+// Navbar functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Mobile menu toggle
+    if (navToggle) {
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // Close mobile menu when clicking on a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Smooth scrolling for nav links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offsetTop = target.offsetTop - 80; // Account for navbar height
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Add active state to current section
+    function updateActiveNav() {
+        const sections = document.querySelectorAll('.sections, #home');
+        const scrollPos = window.scrollY + 100;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav(); // Initial call
 });
