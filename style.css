@@ -247,6 +247,7 @@ a:hover {
     font-weight: 500;
     position: relative;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .nav-link::before {
@@ -298,6 +299,9 @@ a:hover {
     flex-direction: column;
     cursor: pointer;
     gap: 4px;
+    position: relative;
+    width: 30px;
+    height: 21px;
 }
 
 .bar {
@@ -306,10 +310,11 @@ a:hover {
     background: linear-gradient(90deg, rgba(252,48,129,1) 0%, rgba(184,22,255,1) 100%);
     border-radius: 2px;
     transition: all 0.3s ease;
+    transform-origin: center;
 }
 
 /* Mobile Navigation */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .nav-container {
         padding: 1rem;
     }
@@ -317,8 +322,7 @@ a:hover {
     .logo-text {
         font-size: 1.5em;
     }
-    
-    .nav-menu {
+      .nav-menu {
         position: fixed;
         top: 100%;
         left: 0;
@@ -334,11 +338,10 @@ a:hover {
         transition: all 0.3s ease;
         opacity: 0;
         visibility: hidden;
-        border-top: 2px solid rgba(255, 0, 106, 0.3);
+        border-top: none;
     }
-    
-    .nav-menu.active {
-        top: 80px;
+      .nav-menu.active {
+        top: 63px;
         opacity: 1;
         visibility: visible;
     }
@@ -353,18 +356,17 @@ a:hover {
     
     .nav-toggle {
         display: flex;
-    }
-    
-    .nav-toggle.active .bar:nth-child(1) {
-        transform: rotate(45deg) translate(8px, 8px);
+    }    .nav-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(3px, 7px);
     }
     
     .nav-toggle.active .bar:nth-child(2) {
         opacity: 0;
+        transform: translateX(-20px);
     }
     
     .nav-toggle.active .bar:nth-child(3) {
-        transform: rotate(-45deg) translate(8px, -8px);
+        transform: rotate(-45deg) translate(3px, -7px);
     }
 }
 
