@@ -682,6 +682,7 @@ a:hover {
 
 /* BTS Dual Layout Styles */
 .dual-bts-container {
+    justify-content: space-around;
     display: flex;
     flex-wrap: wrap;
     width: 90%;
