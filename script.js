@@ -30,14 +30,45 @@ projects = [
             "image": "assets/project/sportsapp.webp",
             "links": {"source": "https://github.com/thaliumFr/sportshop2"},
             "tags": ["React", "Node.js", "Express", "MariaDB", "Bun"]
-        },
-        {
+        },        {
             "title": "EPSI Waitlist",
             "dates": "2025",
             "description": "**Application de gestion de liste d'attente** pour l'EPSI Montpellier.",
             "image": "assets/project/epsiwaitlist.webp",
             "links": {"source": "https://github.com/enzomtpYT/EPSI-Waitlist"},
             "tags": ["Python", "PostgreSQL", "Twig", "HTML", "CSS", "JavaScript"]
+        },
+        {
+            "title": "PawsomeVencord",
+            "dates": "2025",
+            "description": "**Fork du client Discord Vencord** - Le mod Discord le plus mignon avec des fonctionnalités personnalisées.",
+            "image": "assets/project/pawsomevencord.webp",
+            "links": {"source": "https://github.com/enzomtpYT/PawsomeVencord"},
+            "tags": ["TypeScript", "Discord", "Electron", "React"]
+        },
+        {
+            "title": "EPSI-edtApi",
+            "dates": "2025",
+            "description": "**API de scraping d'emploi du temps** pour l'EPSI - Extraction automatique des plannings scolaires.",
+            "image": "assets/project/epsiedtapi.webp",
+            "links": {"source": "https://github.com/enzomtpYT/EPSI-edtApi"},
+            "tags": ["HTML", "API", "Web Scraping", "Schedule"]
+        },
+        {
+            "title": "enzomtpYT.party",
+            "dates": "2025",
+            "description": "**Site web personnel de statut Discord** - Interface en temps réel affichant mon statut Discord avec intégration Spotify.",
+            "image": "assets/project/githubio.webp",
+            "links": {"source": "https://github.com/enzomtpYT/enzomtpYT.github.io"},
+            "tags": ["HTML", "CSS", "JavaScript", "Discord API", "Spotify API"]
+        },
+        {
+            "title": "KEMac",
+            "dates": "2025",
+            "description": "**Macro web pour Roblox** - Application Python avec interface web pour automatiser le jeu Kori's RNG avec OCR en temps réel.",
+            "image": "assets/project/kemac.webp",
+            "links": {"source": "https://github.com/enzomtpYT/KEMac"},
+            "tags": ["Python", "Flask", "OCR", "WebSocket", "Roblox", "Web UI"]
         }
 ];
 
