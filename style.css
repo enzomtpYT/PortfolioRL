@@ -597,7 +597,7 @@ a:hover {
     height: 24px;
     background: linear-gradient(135deg, rgba(252,48,129,1) 0%, rgba(184,22,255,1) 100%);
     border-radius: 50%;
-    left: -32px;
+    left: -30px;
     top: 15px;
     z-index: 3;
     box-shadow: 0 0 15px rgba(252,48,129,0.8);
@@ -921,7 +921,7 @@ a:hover {
     }
     
     .timeline-dot {
-        left: -32px;
+        left: -30px;
     }
 }
 
